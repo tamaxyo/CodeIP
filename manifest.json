@@ -1,0 +1,19 @@
+{
+  "name": "CodeIP",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistence" : false
+  },
+  "browser_action": {
+    "default_icon": "icon.png", 
+    "default_popup": "main.html"
+  }, 
+  "permissions": [
+    "notifications",
+    "webRequest",
+    "webRequestBlocking", 
+    "*://*/*"
+  ]
+}
