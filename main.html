@@ -2,11 +2,26 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
 		<title>CodeIP</title>
 	</head>
 	<body>
-		your id is : <span id="id"></span>
+		<div id="main">
+			<label for="comment">コメント: </label>
+			<input list="log" name="browser" />
+			<datalist id="log">
+				<option value="Internet Explorer"></option>
+				<option value="Firefox"></option>
+				<option value="Chrome"></option>
+				<option value="Opera"></option>
+				<option value="Safari"></option>
+			</datalist>
+		</div>
+		<br />
+		<div id="related">
+			関連プロジェクト: <a href="">awesome project</a>, <a href="">more awesome project</a>
+		</div>
 	</body>
 </html>
