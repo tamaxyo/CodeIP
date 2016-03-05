@@ -9,19 +9,22 @@
 	</head>
 	<body>
 		<div id="main">
-			<label for="comment">コメント: </label>
-			<input list="log" name="browser" />
-			<datalist id="log">
-				<option value="Internet Explorer"></option>
-				<option value="Firefox"></option>
-				<option value="Chrome"></option>
-				<option value="Opera"></option>
-				<option value="Safari"></option>
+			<label for="memo">メモ: </label>
+			<input id="memo" name="memo" list="memos" />
+			<datalist id="memos">
 			</datalist>
+			<br />
+			<select id="rate">
+				<option value="0">いいね！</option>
+				<option value="1">ダメだね↓</option>
+				<option value="2">要望</option>
+				<option value="3">ノウハウ</option>
+			</select>
+			<button id="submit">送信</button>
 		</div>
-		<br />
 		<div id="related">
-			関連プロジェクト: <a href="">awesome project</a>, <a href="">more awesome project</a>
+			関連プロジェクト: <div id="projects"></div>
 		</div>
+		
 	</body>
 </html>
