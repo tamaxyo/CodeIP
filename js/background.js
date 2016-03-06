@@ -83,6 +83,7 @@
 
           $.when.apply($, events).done(function(){
             for(var i = 0; i < arguments.length; i++) {
+              var p = projects[i];
               var lastEventId = arguments[i][0][0].id;
               var savedId = localStorage.getItem(projects[i].url);
               if(!savedId || savedId != lastEventId) {
@@ -94,7 +95,7 @@
                   message: "project " + projects[i].title + " is updated!!"
                 }, function(nid) {
                   console.log("notifyUpdate - sent");
-                  sessionStorage.setItem(nid, projects[i].url);
+                  sessionStorage.setItem(nid, p.url);
                   setTimeout(function(){
                     console.log("notifyUpdate - cleared");
                     chrome.notifications.clear(nid);
