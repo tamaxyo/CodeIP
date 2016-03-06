@@ -2,27 +2,32 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
 		<title>CodeIP</title>
 	</head>
 	<body>
 		<div id="main">
-			<label for="memo">メモ: </label>
-			<input id="memo" name="memo" list="memos" />
+			<label for="memo" class="label label-info">メモを残す</label>
+			<input id="memo" name="memo" list="memos" class="form-control" />
 			<datalist id="memos">
 			</datalist>
 			<br />
-			<select id="rate">
+			<select id="rate" class="form-control">
 				<option value="0">いいね！</option>
 				<option value="1">ダメだね↓</option>
 				<option value="2">要望</option>
 				<option value="3">ノウハウ</option>
 			</select>
-			<button id="submit">送信</button>
+			<br />
+			<button id="submit" class="btn btn-primary">送信</button>
 		</div>
-		<div id="related">
+		<br />
+		<div id="related" class="well">
 			関連プロジェクト:
 			<div id="projects"></div>
 		</div>

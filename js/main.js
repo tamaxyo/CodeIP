@@ -41,11 +41,11 @@
             return data["url"] === m.url;
           });
           
-          $("#memos").html(
-            memos.map(function(m){
-              return '<option value="' + m.memo + '"></option>';
-            }).join("")
-          );
+          $.each(memos, function(idx){
+            var e = $('<option value="' + memos[idx].memo + '"></option>');
+            e.click(function(evt){ evt.preventDefault(); return false; });
+            $("#memos").append(e);
+          });
         }).fail(function(xhr, status){
           console.log("getLogs - fail, status: ", status);
         }).always(function(){
@@ -84,8 +84,8 @@
             $("#related").show();
             $("#projects").html(
               projects.map(function(p){
-                return '<a target="_blank" href="' + p.url + '" title="' + p.description + '">' + p.title + '</a>'
-              }).join("<br />")
+                return '<a class="label label-info" target="_blank" href="' + p.url + '" title="' + p.memo + '">' + p.title + '</a>'
+              }).join(" ")
             );
           } else {
             $("#related").hide();
