@@ -87,7 +87,7 @@
               var savedId = localStorage.getItem(projects[i].url);
               if(!savedId || savedId != lastEventId) {
                 localStorage.setItem(projects[i].url, lastEventId);
-                sessionStorage.setItem(lastEventId, project[i].url);
+                sessionStorage.setItem(lastEventId, projects[i].url);
                 chrome.notifications.create("", {
                   id: lastEventId, 
                   type: "basic",
