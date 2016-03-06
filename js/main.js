@@ -1,27 +1,9 @@
 (function(){
   var SERVER = "http://133.130.89.148/";
 
-  var uid = (function () {
-    var id = window.localStorage.getItem("id");
-
-    if(!id) {
-      id = guid();
-      window.localStorage.setItem("id", id);
-    }
-    
-    return id;
-  })();
-  
-  var guid = function () {
-    function s4() {
-      return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-  }
-
   var getMemos = function() {
     var data = {};
-    data["uid"] = uid;
+    // data["uid"] = uid;
     data["pf"] = "Web";
 
     chrome.tabs.query({
@@ -57,7 +39,7 @@
 
   var getProjects = function() {
     var data = {};
-    data["uid"] = uid;
+    // data["uid"] = uid;
     data["pf"] = "Web";
 
     chrome.tabs.query({
@@ -101,7 +83,7 @@
 
   var sendMemo = function() {
     var data = {};
-    data["uid"] = uid;
+    // data["uid"] = uid;
     data["pf"] = "Web";
     data["memo"] = $("#memo").val();
     data["rate"] = $("#rate").val();
