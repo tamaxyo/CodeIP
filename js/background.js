@@ -83,21 +83,22 @@
 
           $.when.apply($, events).done(function(){
             for(var i = 0; i < arguments.length; i++) {
-              var p = projects[i];
               var lastEventId = arguments[i][0][0].id;
               var savedId = localStorage.getItem(projects[i].url);
               if(!savedId || savedId != lastEventId) {
                 localStorage.setItem(projects[i].url, lastEventId);
+                sessionStorage.setItem(lastEventId, project[i].url);
                 chrome.notifications.create("", {
+                  id: lastEventId, 
                   type: "basic",
                   iconUrl: "icon.png", 
                   title: "CodeIP", 
                   message: "project " + projects[i].title + " is updated!!"
                 }, function(nid) {
                   console.log("notifyUpdate - sent");
-                  sessionStorage.setItem(nid, p.url);
                   setTimeout(function(){
                     console.log("notifyUpdate - cleared");
+                    sessionStorage.removeItem(nid);
                     chrome.notifications.clear(nid);
                   }, 5000);
                 })
