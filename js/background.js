@@ -74,25 +74,35 @@
           var projects = arguments[1][0].filter(function(p){
             return $.inArray(p.id, rels.map(function(r){ return r.pid})) > -1
           });
-
           console.log("notifyUpdate - selcted projects: ", projects);
-          if(projects.length > 0) {
-            $.each(projects, function(idx){
-              chrome.notifications.create("", {
-                type: "basic",
-                iconUrl: "icon.png", 
-                title: "CodeIP", 
-                message: "project " + projects[idx].title + " is updated!!"
-              }, function(nid) {
-                console.log("notifyUpdate - sent");
-                sessionStorage.setItem(nid, projects[idx].url);
-                setTimeout(function(){
-                  console.log("notifyUpdate - cleared");
-                  chrome.notifications.clear(nid);
-                }, 5000);
-              })
-            })
-          }
+
+          var events = projects.map(function(p){
+            var u = p.url.replace("github.com", "api.github.com/repos") + "/events";
+            return $.ajax({method: "GET", url:u});
+          });
+
+          $.when.apply($, events).done(function(){
+            for(var i = 0; i < arguments.length; i++) {
+              var lastEventId = arguments[i][0][0].id;
+              var savedId = localStorage.getItem(projects[i].url);
+              if(!savedId || savedId != lastEventId) {
+                localStorage.setItem(projects[i].url, lastEventId);
+                chrome.notifications.create("", {
+                  type: "basic",
+                  iconUrl: "icon.png", 
+                  title: "CodeIP", 
+                  message: "project " + projects[i].title + " is updated!!"
+                }, function(nid) {
+                  console.log("notifyUpdate - sent");
+                  sessionStorage.setItem(nid, projects[i].url);
+                  setTimeout(function(){
+                    console.log("notifyUpdate - cleared");
+                    chrome.notifications.clear(nid);
+                  }, 5000);
+                })
+              }
+            }
+          });
         });
       }
     });
