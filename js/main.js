@@ -40,7 +40,7 @@
           memos = memos.filter(function(m){
             return data["url"] === m.url;
           });
-          
+
           $.each(memos, function(idx){
             var e = $('<option value="' + memos[idx].memo + '"></option>');
             e.click(function(evt){ evt.preventDefault(); return false; });
