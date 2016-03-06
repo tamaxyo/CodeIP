@@ -113,17 +113,32 @@
       if(tabs.length > 0) {
         data["url"] = tabs[0].url
         console.log("sendMemo - ", data);
+        $("#submit").button("loading");
+
         $.ajax({
           method: "POST", 
           url: SERVER+"books/add",
           data: data //JSON.stringify(data)
         }).done(function(){
           console.log("sendMemo - done");
+            setTimeout(function(){
+              $("#memo").val("");              
+            }, 500);
         }).fail(function(xhr, status){
           console.log("sendMemo - fail, status: ", status);
         }).always(function(){
           console.log("sendMemo - always")
-          chrome.runtime.sendMessage({method: "update"});
+          chrome.runtime.sendMessage({method: "update"}, function(res){
+            setTimeout(function(){
+              $("#submit").button('reset');              
+            }, 500);
+
+            if($("#related").is(":hidden")) {
+              setTimeout(function(){
+                window.close();                
+              }, 700);
+            }
+          });
         });
       }
     });

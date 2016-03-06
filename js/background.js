@@ -142,6 +142,7 @@
     console.log("onMessage", req, sender);
     if(req.method === "update" ) {
       update();
+      sendResponse();
     }
   });
 
