@@ -88,8 +88,7 @@
               if(!savedId || savedId != lastEventId) {
                 localStorage.setItem(projects[i].url, lastEventId);
                 sessionStorage.setItem(lastEventId, projects[i].url);
-                chrome.notifications.create("", {
-                  id: lastEventId, 
+                chrome.notifications.create(lastEventId, {
                   type: "basic",
                   iconUrl: "icon.png", 
                   title: "CodeIP", 
